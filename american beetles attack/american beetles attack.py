@@ -24,18 +24,18 @@ class insect():
         self.speed_x = random.randint(-10, 10) / 50; self.speed_y = random.randint(-10, 10) / 50
         self.change_speed_countdown_x = 1000*spdt; self.change_speed_countdown_y = 1000*spdt
     def move(self):
-        if self.change_target_speed_x > self.speed_x: self.speed_x = self.speed_x + 0.00004
-        elif self.change_target_speed_x < self.speed_x: self.speed_x = self.speed_x - 0.00004
-        if self.change_target_speed_y > self.speed_y: self.speed_y = self.speed_y + 0.00004
-        elif self.change_target_speed_y < self.speed_y: self.speed_y = self.speed_y - 0.00004
+        if self.change_target_speed_x > self.speed_x: self.speed_x = self.speed_x + (0.00004/spdt)
+        elif self.change_target_speed_x < self.speed_x: self.speed_x = self.speed_x - (0.00004/spdt)
+        if self.change_target_speed_y > self.speed_y: self.speed_y = self.speed_y + (0.00004/spdt)
+        elif self.change_target_speed_y < self.speed_y: self.speed_y = self.speed_y - (0.00004/spdt)
         self.change_speed_countdown_x = self.change_speed_countdown_x - 1
         self.change_speed_countdown_y = self.change_speed_countdown_y - 1
         if self.change_speed_countdown_x <= 0:
-            self.change_target_speed_x = random.randint(-10, 10) / 10
-            self.change_speed_countdown_x = random.randint(800, 2400)
+            self.change_target_speed_x = random.randint(-10, 10) / (10*spdt)
+            self.change_speed_countdown_x = random.randint(800, 2400)*spdt
         if self.change_speed_countdown_y <= 0:
-            self.change_target_speed_y = random.randint(-10, 10) / 10
-            self.change_speed_countdown_y = random.randint(800, 2400)
+            self.change_target_speed_y = random.randint(-10, 10) / (10*spdt)
+            self.change_speed_countdown_y = random.randint(800, 2400)*spdt
         self.x = self.x + self.speed_x/spdt; self.y = self.y + self.speed_y/spdt
         if self.x < -30 or self.x > width:
             self.speed_x = self.speed_x * -1
